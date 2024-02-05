@@ -1,4 +1,5 @@
 import reactImg from "./assets/react-core-concepts.png";
+import componentImg from "./assets/components.png";
 
 const reactDescription = ["Fundamental", "Crucial", "Core"];
 
@@ -23,6 +24,16 @@ function Header() {
   );
 }
 
+function CoreConcepts(props) {
+  return (
+    <li>
+      <img src={props.image} alt={props.title} />
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
+    </li>
+  );
+}
+
 // can not use Header(); for calling function in react.
 // we use <Header />; for calling function in react.
 
@@ -33,7 +44,20 @@ function App() {
       <Header />
       
       <main>
-        <h2>Time to get started!</h2>
+        <section id="core-concepts">
+          <h2>Core Concepts</h2>
+          <ul>
+            <CoreConcepts
+             image={componentImg}
+             title="Components"
+             description="The core UI building block" />
+
+            <CoreConcepts />
+
+            <CoreConcepts/>
+          </ul>
+
+        </section>
       </main>
     </div>
   );
