@@ -19,7 +19,7 @@ function App() {
 
   let tabContent = <p>Select a topic to see the example</p>;
 
-  if(selectedTopic) {
+  if (selectedTopic) {
     tabContent = (
       <div id="tab-content">
         <h3>{EXAMPLES[selectedTopic].title}</h3>
@@ -40,17 +40,13 @@ function App() {
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcepts
-              image={CORE_CONCEPTS[0].image}
-              title={CORE_CONCEPTS[0].title}
-              description={CORE_CONCEPTS[0].description}
-            />
+            {/* JSX is capable of dealing with array of renderable data as list */} 
+            {/* ****** Must be use in the <ul>...</ul> tag other wise nothing display */}
 
-            <CoreConcepts {...CORE_CONCEPTS[1]} />
+            {CORE_CONCEPTS.map((concept, index) => (
+              <CoreConcepts key={index} {...concept} />
+            ))}
 
-            <CoreConcepts {...CORE_CONCEPTS[2]} />
-
-            <CoreConcepts {...CORE_CONCEPTS[3]} />
           </ul>
         </section>
 
@@ -58,10 +54,30 @@ function App() {
           <h2>Examples</h2>
 
           <menu>
-            <TabButton isSelected={selectedTopic === "components"} onSelect={() => handleClick("components")}>Component</TabButton>
-            <TabButton isSelected={selectedTopic === "jsx"} onSelect={() => handleClick("jsx")}>JSX</TabButton>
-            <TabButton isSelected={selectedTopic === "props"} onSelect={() => handleClick("props")}>Props</TabButton>
-            <TabButton isSelected={selectedTopic === "state"} onSelect={() => handleClick("state")}>State</TabButton>
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              onSelect={() => handleClick("components")}
+            >
+              Component
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              onSelect={() => handleClick("jsx")}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              onSelect={() => handleClick("props")}
+            >
+              Props
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              onSelect={() => handleClick("state")}
+            >
+              State
+            </TabButton>
           </menu>
 
           {/* Conditional rendering */}
