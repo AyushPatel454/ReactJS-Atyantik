@@ -4,6 +4,9 @@ import CoreConcepts from "./components/CoreConcepts.jsx";
 import TabButton from "./components/TabButton.jsx";
 
 function App() {
+  function handleClick() {
+      console.log("Button Clicked! - from App.jsx");
+  }
   return (
     <div>
       {/* load component HTML */}
@@ -31,10 +34,10 @@ function App() {
           <h2>Examples</h2>
 
           <menu>
-            <TabButton>Component</TabButton>
-            <TabButton>JSX</TabButton>
-            <TabButton>Props</TabButton>
-            <TabButton>State</TabButton>
+            <TabButton onSelect={handleClick}>Component</TabButton>
+            <TabButton onSelect={handleClick}>JSX</TabButton>
+            <TabButton onSelect={handleClick}>Props</TabButton>
+            <TabButton onSelect={handleClick}>State</TabButton>
           </menu>
         </section>
       </main>
