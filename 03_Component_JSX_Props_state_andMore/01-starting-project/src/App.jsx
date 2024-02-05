@@ -1,13 +1,21 @@
+import { useState } from "react";
 import { CORE_CONCEPTS } from "./data.js";
 import Header from "./components/Header/Header.jsx";
 import CoreConcepts from "./components/CoreConcepts.jsx";
 import TabButton from "./components/TabButton.jsx";
 
 function App() {
+  // const [variable, function] = useState(initialValue);
+  const [selectedTopic, setSelectedTopic] = useState("Select a topic to learn more.");
+
   function handleClick(selectedButton) {
     // selectedButton => component, jsx, props, state
-      console.log(selectedButton + " Button Clicked!");
+
+    // selectedTopic = selectedButton; // ---> Not the correct way to update the state.
+    
+      setSelectedTopic(selectedButton); // update the state & re-render the component.      
   }
+
   return (
     <div>
       {/* load component HTML */}
@@ -40,6 +48,8 @@ function App() {
             <TabButton onSelect={() => handleClick("Props")}>Props</TabButton>
             <TabButton onSelect={() => handleClick("State")}>State</TabButton>
           </menu>
+
+          {selectedTopic}
         </section>
       </main>
     </div>
