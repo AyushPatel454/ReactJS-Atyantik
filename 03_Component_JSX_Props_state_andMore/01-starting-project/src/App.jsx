@@ -53,9 +53,9 @@ function App() {
           </menu>
 
           {/* Conditional rendering */}
-          {!selectedTopic ? (
-            <p>Select a topic to see the example</p>
-          ) : (
+          {!selectedTopic && <p>Select a topic to see the example</p>}
+          
+          {selectedTopic && (
             <div id="tab-content">
               <h3>{EXAMPLES[selectedTopic].title}</h3>
               <p>{EXAMPLES[selectedTopic].description}</p>
