@@ -17,6 +17,20 @@ function App() {
     setSelectedTopic(selectedButton); // update the state & re-render the component.
   }
 
+  let tabContent = <p>Select a topic to see the example</p>;
+
+  if(selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
+  }
+
   return (
     <div>
       {/* load component HTML */}
@@ -53,17 +67,7 @@ function App() {
           </menu>
 
           {/* Conditional rendering */}
-          {!selectedTopic && <p>Select a topic to see the example</p>}
-          
-          {selectedTopic && (
-            <div id="tab-content">
-              <h3>{EXAMPLES[selectedTopic].title}</h3>
-              <p>{EXAMPLES[selectedTopic].description}</p>
-              <pre>
-                <code>{EXAMPLES[selectedTopic].code}</code>
-              </pre>
-            </div>
-          )}
+          {tabContent}
         </section>
       </main>
     </div>
