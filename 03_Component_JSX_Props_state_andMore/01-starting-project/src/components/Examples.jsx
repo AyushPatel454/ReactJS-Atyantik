@@ -30,30 +30,30 @@ export default function Examples() {
   }
 
   return (
-    <Section id="examples" title="Examples">
+    <Section title="Examples" id="examples">
 
       <menu>
         <TabButton
           isSelected={selectedTopic === "components"}
-          onSelect={() => handleClick("components")}
+          onClick={() => handleClick("components")}
         >
           Component
         </TabButton>
         <TabButton
           isSelected={selectedTopic === "jsx"}
-          onSelect={() => handleClick("jsx")}
+          onClick={() => handleClick("jsx")}
         >
           JSX
         </TabButton>
         <TabButton
           isSelected={selectedTopic === "props"}
-          onSelect={() => handleClick("props")}
+          onClick={() => handleClick("props")}
         >
           Props
         </TabButton>
         <TabButton
           isSelected={selectedTopic === "state"}
-          onSelect={() => handleClick("state")}
+          onClick={() => handleClick("state")}
         >
           State
         </TabButton>
