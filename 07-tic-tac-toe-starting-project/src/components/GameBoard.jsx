@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialGameBoard = [
     [null, null, null],
     [null, null, null],
@@ -5,11 +7,21 @@ const initialGameBoard = [
 ]
 
 export default function GameBoard() {
+    const [gameBoard, setGameBoard] = useState(initialGameBoard);
+
+    function handleSelectSquare(rowIndex, colIndex) {
+        setGameBoard((prevGameBoard) => {
+            const updatedGameBoard = [...prevGameBoard.map(row => [...row])]; // Deep copy of the game board. // Because we should never mutate the state directly.
+            updatedGameBoard[rowIndex][colIndex] = 'X';
+            return updatedGameBoard; // Return the updated game board. // This will trigger a re-render of the component. // And the component will update the game board.
+        });
+    }
+
     return (
         <ol id="game-board">
-            {initialGameBoard.map((row, rowIndex) => <li key={rowIndex}>
+            {gameBoard.map((row, rowIndex) => <li key={rowIndex}>
                 <ol>
-                    {row.map((playerSymbol, colIndex) => <li key={colIndex}><button>{playerSymbol}</button></li>)}
+                    {row.map((playerSymbol, colIndex) => <li key={colIndex}><button onClick={() => handleSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button></li>)}
                 </ol>
             </li>)}
         </ol>
