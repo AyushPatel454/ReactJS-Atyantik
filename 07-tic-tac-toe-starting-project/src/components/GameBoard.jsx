@@ -13,19 +13,8 @@ export default function GameBoard({ onSelectSquare, turns }) {
 
         
         gameBoard[row][col] = player; // update with the player symbol.
-        console.log(`gameBoard[${row}][${col}]: `, gameBoard[row][col]);
+        // console.log(`gameBoard[${row}][${col}]: `, gameBoard[row][col]);
     }
-  // const [gameBoard, setGameBoard] = useState(initialGameBoard);
-
-  // function handleSelectSquare(rowIndex, colIndex) {
-  //     setGameBoard((prevGameBoard) => {
-  //         const updatedGameBoard = [...prevGameBoard.map(row => [...row])]; // Deep copy of the game board. // Because we should never mutate the state directly.
-  //         updatedGameBoard[rowIndex][colIndex] = activePlayer;
-  //         return updatedGameBoard; // Return the updated game board. // This will trigger a re-render of the component. // And the component will update the game board.
-  //     });
-
-  //     onSelectSquare(); // it's a callback function. (App.jsx: handleSelectSquare)
-  // }
 
   return (
     <ol id="game-board">

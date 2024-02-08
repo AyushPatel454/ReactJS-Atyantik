@@ -3,21 +3,28 @@ import GameBoard from "./components/GameBoard";
 import Player from "./components/Player";
 import Log from "./components/Log";
 
+// ---> Function to derive the active player.
+function deriveActivePlayer(turns) {
+  let currentPlayer = 'X';
+
+  // If last turn was 'X', then now, it's 'O's turn.
+  if(turns.length > 0 && turns[0].player === 'X') {
+    currentPlayer = 'O';
+  }
+
+  return currentPlayer;
+}
+
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  const [activePlayer, setActivePlayer] = useState('X');
+
+  const activePlayer = deriveActivePlayer(gameTurns);
 
   function handleSelectSquare(rowIndex, colIndex) {
-    // set new Active player.
-    setActivePlayer((currentActivePlayer) => currentActivePlayer === 'X' ? 'O' : 'X');
     // update game turns.
     setGameTurns((prevTurns) => {
       // get the current player.
-      let currentPlayer = 'X';
-
-      if(prevTurns.length > 0 && prevTurns[0].player === 'X') {
-        currentPlayer = 'O';
-      }
+      const currentPlayer = deriveActivePlayer(prevTurns);
 
       // update the turns by adding information about the current turn.
       const updatedTurns = [ {square: {row: rowIndex, col: colIndex}, player: currentPlayer}, ...prevTurns];
