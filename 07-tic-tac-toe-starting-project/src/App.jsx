@@ -28,7 +28,8 @@ function App() {
 
   const activePlayer = deriveActivePlayer(gameTurns);
 
-  let gameBoard = initialGameBoard;
+  let gameBoard = [...initialGameBoard.map(array => [...array])]; // Create a deep copy of the initialGameBoard. // why ? ---> Because, we don't want to mutate the initialGameBoard.
+ 
   let winner; // currently ---> undefined.
 
   // Update the game board based on the game turns. (gameTurns is an array of objects. Each object has the information about the square and the player.)
@@ -84,8 +85,9 @@ function App() {
           <Player initialName="Player 2" symbol="O" isActive={activePlayer === "O"} />
         </ol>
 
-        {(winner || hasDraw) && <GameOver winner={winner} /> }
-        <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} onRestart={handleRestartGame} />
+        {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestartGame} /> }
+        
+        <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
       </div>
       
       <Log turns={gameTurns} />
