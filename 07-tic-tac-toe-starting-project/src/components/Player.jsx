@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -8,6 +13,11 @@ export default function Player({ initialName, symbol, isActive }) {
     // ---> Updating state based on the previous state.
     // setIsEditing(!isEditing); // It SCHEDULES a state to change. It doesn't change the state immediately.
     setIsEditing((editing) => !editing); // It changes the state immediately. (Best practice.)
+
+    if (isEditing) {
+      // If the player is done editing, call the onChangeName function.
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
