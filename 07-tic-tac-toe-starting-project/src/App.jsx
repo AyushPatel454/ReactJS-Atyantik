@@ -5,7 +5,12 @@ import Log from "./components/Log";
 import { WINNING_COMBINATIONS } from "./winning-combinations.js";
 import GameOver from "./components/GameOver.jsx";
 
-const initialGameBoard = [
+const PLAYERS = {
+  X: 'Player 1',
+  O: 'Player 2'
+}
+
+const INITIAL_GAME_BOARD = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
@@ -23,26 +28,27 @@ function deriveActivePlayer(turns) {
   return currentPlayer;
 }
 
-function App() {
-  const [players, setPlayers] = useState({ X: "Player 1", O: "Player 2" });
-  const [gameTurns, setGameTurns] = useState([]);
+// ---> Function to derive the game board. (gameTurns is an array of objects.)
+function deriveGameBoard(gameTurns) {
+  let gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])]; // Create a deep copy of the initialGameBoard. // why ? ---> Because, we don't want to mutate the initialGameBoard.
 
-  const activePlayer = deriveActivePlayer(gameTurns);
-
-  let gameBoard = [...initialGameBoard.map((array) => [...array])]; // Create a deep copy of the initialGameBoard. // why ? ---> Because, we don't want to mutate the initialGameBoard.
-
-  let winner; // currently ---> undefined.
-
+  
   // Update the game board based on the game turns. (gameTurns is an array of objects. Each object has the information about the square and the player.)
   for (let turn of gameTurns) {
     const { square, player } = turn; // Destructuring.
     const { row, col } = square; // Destructuring.
-
+    
     gameBoard[row][col] = player; // update with the player symbol.
     // console.log(`gameBoard[${row}][${col}]: `, gameBoard[row][col]);
   }
   // console.log("---> Game Board: ", gameBoard);
 
+  return gameBoard;
+}
+
+// ---> Function to derive the winner.
+function deriveWinner(gameBoard, players) {
+  let winner; // currently ---> undefined.
   // Check if there's a winner. - Check after every turn.
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquareSymbol =
@@ -63,6 +69,16 @@ function App() {
     }
   }
 
+  return winner;
+}
+
+function App() {
+  const [players, setPlayers] = useState(PLAYERS);
+  const [gameTurns, setGameTurns] = useState([]);
+
+  const activePlayer = deriveActivePlayer(gameTurns); // derive the active player.
+  const gameBoard = deriveGameBoard(gameTurns);  // derive the game board.
+  const winner = deriveWinner(gameBoard, players);  // derive the winner.
   const hasDraw = gameTurns.length === 9 && !winner; // if there's no winner and the number of turns is 9, then it's a draw.
 
   // ---> When a square is selected, this function will be called.
@@ -99,13 +115,13 @@ function App() {
       <div id="game-container">
         <ol id="players" className="highlight-player">
           <Player
-            initialName="Player 1"
+            initialName={PLAYERS.X}
             symbol="X"
             isActive={activePlayer === "X"}
             onChangeName={handlePlayerNameChange}
           />
           <Player
-            initialName="Player 2"
+            initialName={PLAYERS.O}
             symbol="O"
             isActive={activePlayer === "O"}
             onChangeName={handlePlayerNameChange}
