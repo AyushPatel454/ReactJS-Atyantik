@@ -36,7 +36,9 @@ function App() {
     
     // console.log("---> Handle Input Change\n"+"identifier: ", identifier);
     // convert in case of number
-    const value = event.target.valueAsNumber;
+    // check value is NaN OR NOT
+
+    const value = isNaN(event.target.value) ? 0 : Number(event.target.value);
     console.log("value: ", value);
     setInvestment((prevInvestment) => {
       return {
