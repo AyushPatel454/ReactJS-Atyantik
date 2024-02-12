@@ -1,25 +1,23 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export default function Player() {
+  // ---> Refs
+  // This ref is attached to an input field in the JSX returned by the component.
+  // This allows us to access the properties of this input field directly.
+  const playerName = useRef();
+
   const [enteredPlayerName, setEnteredPlayerName] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
 
-  // when input field is change
-  function handleChange(event) {
-    setSubmitted(false); // when input field is change, set submitted to false & display unknown entity.
-    setEnteredPlayerName(event.target.value); // set the enteredPlayerName to the value of the input field.
-  }
-
-  // when button is clicked. make submitted true then (Display the name of the player)
+  // When the button is clicked, the handleClick function is executed. This function reads the current value of the input field using the ref and updates the state enteredPlayerName with this value.
   function handleClick() {
-    setSubmitted(true);
+    setEnteredPlayerName(playerName.current.value);
   }
 
   return (
     <section id="player">
-      <h2>Welcome {submitted ? enteredPlayerName :"unknown entity"}</h2>
+      <h2>Welcome {enteredPlayerName ?? "unknown entity"}</h2>
       <p>
-        <input type="text" value={enteredPlayerName} onChange={handleChange} />
+        <input ref={playerName} type="text" />
         <button onClick={handleClick}>Set Name</button>
       </p>
     </section>
