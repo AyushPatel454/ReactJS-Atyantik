@@ -11,6 +11,7 @@ export default function Player() {
   // When the button is clicked, the handleClick function is executed. This function reads the current value of the input field using the ref and updates the state enteredPlayerName with this value.
   function handleClick() {
     setEnteredPlayerName(playerName.current.value);
+    playerName.current.value = ""; // This line clears the input field after the name is set.
   }
 
   return (
