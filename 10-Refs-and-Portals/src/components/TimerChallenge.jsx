@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+
+// ---> we can not use timer because it is not a state variable. Means ?? It shared between all other TimerChallenge components. So, we need to use state variable to store the timer value.
+// let timer;
 
 export default function TimerChallenge({ title, targetTime }) {
+    const timer = useRef(); // this is not lost when component is re-execute that's why we use useRef().
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerExpired, setTimerExpired] = useState(false);
 
+
   function handleStart() {
-    setTimeout(() => {
+    timer.current = setTimeout(() => {
       setTimerExpired(true);
     }, targetTime * 1000);
 
     setTimerStarted(true);
   }
 
-  function handleStop() {}
+  function handleStop() {
+    clearInterval(timer.current);
+  }
+
   return (
     <section className="challenge">
       <h2>{title}</h2>
@@ -21,7 +29,7 @@ export default function TimerChallenge({ title, targetTime }) {
         {targetTime} second{targetTime > 1 ? "s" : ""}
       </p>
       <p>
-        <button onClick={handleStart}>
+        <button onClick={timerStarted ? handleStop : handleStart}>
             {timerStarted ? 'Stop': 'Start'} Challenge
         </button>
       </p>
