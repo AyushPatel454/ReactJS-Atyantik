@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        title: ['"Pacifico"', 'cursive'] // ---> Pacifico is google font that wise write in double quote "" inside the single quote ''.
+      }
+    },
   },
   plugins: [],
 }
