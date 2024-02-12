@@ -35,13 +35,13 @@ export default function AuthInputs() {
       <ControlContainer>
           <Input
             label="Email"
-            $invalid={emailNotValid}
+            invalid={emailNotValid}
             type="email"
             onChange={(event) => handleInputChange("email", event.target.value)}
           />
           <Input
             label="Password"
-            $invalid={passwordNotValid}
+            invalid={passwordNotValid}
             type="password"
             onChange={(event) =>
               handleInputChange("password", event.target.value)
