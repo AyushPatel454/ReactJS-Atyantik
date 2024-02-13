@@ -11,6 +11,7 @@ function App() {
     tasks: [],
   });
 
+  // ---> Add new Task
   function handleAddTask(text) {
     setProjectState((prevState) => {
       const taskId = Math.random();
@@ -27,7 +28,16 @@ function App() {
     });
   }
 
-  function handleDeleteTask() {}
+  // ---> Delete Task
+  function handleDeleteTask(id) {
+    setProjectState((prevState) => ({
+      ...prevState,
+      // filter out the task that we don't want to delete
+      tasks: prevState.tasks.filter(
+        (task) => task.id !== id
+      ),
+    }));
+  }
 
   // ---> Cancel Add Project
   function handleCancelAddProject() {
@@ -75,7 +85,7 @@ function App() {
     setProjectState((prevState) => ({
       ...prevState,
       selectedProjectId: undefined,
-      // filter out the project that we want to delete
+      // filter out the project that we don't want to delete
       projects: prevState.projects.filter(
         (project) => project.id !== prevState.selectedProjectId
       ),
@@ -85,14 +95,14 @@ function App() {
   const selectedProject = projectState.projects.find(
     (project) => project.id === projectState.selectedProjectId
   );
-  
+
   let content = (
     <SelectedProject
       project={selectedProject}
       onDelete={handleDeleteProject}
       onAddTask={handleAddTask}
       onDeleteTask={handleDeleteTask}
-      tasks={projectState.tasks}
+      tasks={projectState.tasks.filter((task) => task.projectId === projectState.selectedProjectId)}
     />
   );
 
@@ -111,6 +121,7 @@ function App() {
           projects={projectState.projects}
           onStartAddProject={handleStartAddProject}
           onSelectProject={handleSelectProject}
+          selectedProjectId={projectState.selectedProjectId}
         />
         {content}
       </main>
