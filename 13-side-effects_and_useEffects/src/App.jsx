@@ -7,10 +7,19 @@ import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
 import logoImg from "./assets/logo.png";
 import { sortPlacesByDistance } from "./loc.js";
 
+// ---> Load the selected places from local storage.
+// why this write outside App() ? Because it is not related to the rendering of the component.
+// It is synchronous operation.
+// No need to execute again and again. (It execute when the component is mounted.)
+const storeIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+const selectedPlaces = storeIds.map((id) =>
+  AVAILABLE_PLACES.find((place) => place.id === id)
+);
+
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
-  const [pickedPlaces, setPickedPlaces] = useState([]);
+  const [pickedPlaces, setPickedPlaces] = useState(selectedPlaces);
   const [availablePlaces, setAvailablePlaces] = useState([]);
 
   // ---> useEffect is a hook that allows you to perform side effects in function components.
@@ -50,7 +59,7 @@ function App() {
     });
 
     // ---> Save the selected place to local storage.
-    // (it also side effect because it is not directly related to the rendering of the component.) 
+    // (it also side effect because it is not directly related to the rendering of the component.)
     // But there is no need to use useEffect here because it is not related to the rendering of the component.
     const storeIds = JSON.parse(localStorage.getItem("selectedPlaces")) || []; // if there is no selectedPlaces, it will return an empty array
     if (storeIds.indexOf(id) === -1) {
@@ -63,6 +72,13 @@ function App() {
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
     modal.current.close();
+
+    // ---> Remove the selected place from local storage.s
+    const storeIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+    localStorage.setItem(
+      "selectedPlaces",
+      JSON.stringify(storeIds.filter((id) => id !== selectedPlace.current))
+    );
   }
 
   return (
