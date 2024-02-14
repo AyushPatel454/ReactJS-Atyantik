@@ -1,11 +1,11 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from "react";
 
-import Places from './components/Places.jsx';
-import { AVAILABLE_PLACES } from './data.js';
-import Modal from './components/Modal.jsx';
-import DeleteConfirmation from './components/DeleteConfirmation.jsx';
-import logoImg from './assets/logo.png';
-import { sortPlacesByDistance } from './loc.js';
+import Places from "./components/Places.jsx";
+import { AVAILABLE_PLACES } from "./data.js";
+import Modal from "./components/Modal.jsx";
+import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
+import logoImg from "./assets/logo.png";
+import { sortPlacesByDistance } from "./loc.js";
 
 function App() {
   const modal = useRef();
@@ -17,7 +17,7 @@ function App() {
   // take 2 arguments: a callback function and an array of dependencies.
   // the callback function is called after the component is rendered.
   // the array of dependencies is used to determine when the callback function is called.
-  useEffect(()=> {
+  useEffect(() => {
     // ---> Fetch the user's location and sort the places by distance.
     // it is side effect. Why ? Because it is not directly related to the rendering of the component.
     navigator.geolocation.getCurrentPosition((position) => {
@@ -26,11 +26,10 @@ function App() {
         position.coords.latitude,
         position.coords.longitude
       );
-      
+
       setAvailablePlaces(sortedPlaces); // set the sorted places
     });
   }, []); // empty array means that the effect will only run once, after the first render // call dependency array
-  
 
   function handleStartRemovePlace(id) {
     modal.current.open();
@@ -49,6 +48,14 @@ function App() {
       const place = AVAILABLE_PLACES.find((place) => place.id === id);
       return [place, ...prevPickedPlaces];
     });
+
+    // ---> Save the selected place to local storage.
+    // (it also side effect because it is not directly related to the rendering of the component.) 
+    // But there is no need to use useEffect here because it is not related to the rendering of the component.
+    const storeIds = JSON.parse(localStorage.getItem("selectedPlaces")) || []; // if there is no selectedPlaces, it will return an empty array
+    if (storeIds.indexOf(id) === -1) {
+      localStorage.setItem("selectedPlaces", JSON.stringify([id, ...storeIds]));
+    }
   }
 
   function handleRemovePlace() {
@@ -78,7 +85,7 @@ function App() {
       <main>
         <Places
           title="I'd like to visit ..."
-          fallbackText={'Select the places you would like to visit below.'}
+          fallbackText={"Select the places you would like to visit below."}
           places={pickedPlaces}
           onSelectPlace={handleStartRemovePlace}
         />
