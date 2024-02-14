@@ -17,8 +17,8 @@ const selectedPlaces = storeIds.map((id) =>
 );
 
 function App() {
-  const modal = useRef();
   const selectedPlace = useRef();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [pickedPlaces, setPickedPlaces] = useState(selectedPlaces);
   const [availablePlaces, setAvailablePlaces] = useState([]);
 
@@ -41,12 +41,12 @@ function App() {
   }, []); // empty array means that the effect will only run once, after the first render // call dependency array
 
   function handleStartRemovePlace(id) {
-    modal.current.open();
+    setModalIsOpen(true); // open the modal
     selectedPlace.current = id;
   }
 
   function handleStopRemovePlace() {
-    modal.current.close();
+    setModalIsOpen(false); // close the modal
   }
 
   function handleSelectPlace(id) {
@@ -71,7 +71,7 @@ function App() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
-    modal.current.close();
+    setModalIsOpen(false); // close the modal
 
     // ---> Remove the selected place from local storage.s
     const storeIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
@@ -83,7 +83,7 @@ function App() {
 
   return (
     <>
-      <Modal ref={modal}>
+      <Modal open={modalIsOpen}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
           onConfirm={handleRemovePlace}
