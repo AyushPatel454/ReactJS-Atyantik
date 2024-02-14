@@ -1,15 +1,36 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
+import { sortPlacesByDistance } from './loc.js';
 
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
   const [pickedPlaces, setPickedPlaces] = useState([]);
+  const [availablePlaces, setAvailablePlaces] = useState([]);
+
+  // ---> useEffect is a hook that allows you to perform side effects in function components.
+  // take 2 arguments: a callback function and an array of dependencies.
+  // the callback function is called after the component is rendered.
+  // the array of dependencies is used to determine when the callback function is called.
+  useEffect(()=> {
+    // ---> Fetch the user's location and sort the places by distance.
+    // it is side effect. Why ? Because it is not directly related to the rendering of the component.
+    navigator.geolocation.getCurrentPosition((position) => {
+      const sortedPlaces = sortPlacesByDistance(
+        AVAILABLE_PLACES,
+        position.coords.latitude,
+        position.coords.longitude
+      );
+      
+      setAvailablePlaces(sortedPlaces); // set the sorted places
+    });
+  }, []); // empty array means that the effect will only run once, after the first render // call dependency array
+  
 
   function handleStartRemovePlace(id) {
     modal.current.open();
@@ -63,7 +84,8 @@ function App() {
         />
         <Places
           title="Available Places"
-          places={AVAILABLE_PLACES}
+          places={availablePlaces}
+          fallbackText="Sorting places by distance..."
           onSelectPlace={handleSelectPlace}
         />
       </main>
