@@ -41,6 +41,7 @@ export default function Quiz() {
 
   return (
     <div id="quiz">
+      {/* Question Component is re-create if activeQuestionIndex is changed. */}
       <Question
         key={activeQuestionIndex}
         index={activeQuestionIndex}
