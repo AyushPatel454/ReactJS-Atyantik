@@ -1,11 +1,9 @@
-import { useEffect, useState  } from "react";
+import { useEffect, useState } from "react";
+import ProgressBar from "./ProgressBar.jsx";
 
-const TIMER = 3000; 
+const TIMER = 3000;
 
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
-  
-  const [remainingTime, setRemainingTime] = useState(TIMER);
-
   // useEffect is used to perform side effects in function components.
   // delete the selected place after 3 seconds.
   useEffect(() => {
@@ -19,24 +17,9 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
     return () => {
       console.log("clean up");
       clearTimeout(timer);
-    }
-  },[onConfirm]);
+    };
+  }, [onConfirm]);
 
-  // ---> this useEffect is used to update the remaining time every 10 milliseconds.
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRemainingTime((prevTime) => prevTime - 10);
-    }, 10);
-
-    // clean up function.
-    // That will be called when the component is unmounted.
-    // (when the component is removed from the DOM that time stop the interval)
-    return () => {
-      console.log("clean up - Interval");
-      clearInterval(interval);
-    }
-  }, []);
-  
   return (
     <div id="delete-confirmation">
       <h2>Are you sure?</h2>
@@ -49,8 +32,7 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
           Yes
         </button>
       </div>
-      {/* Display progress bar. */}
-      <progress value={remainingTime} max={TIMER} />
+      <ProgressBar timer={TIMER} />
     </div>
   );
 }
