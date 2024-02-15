@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import QUESTIONS from "../questions.js";
 import QuizCompleteImg from "../assets/quiz-complete.png";
 import QuestionTimer from "./QuestionTimer.jsx";
@@ -26,18 +26,25 @@ export default function Quiz() {
   const shuffledAnswers = [...QUESTIONS[activeQuestionIndex].answers];
   shuffledAnswers.sort(() => Math.random() - 0.5); // Math.random() returns a number between 0 and 1 (excluding 1) - 0.5 will return a number between -0.5 and 0.5 - this will randomly return a positive or negative number - so we it sort can be in ascending or descending order.
 
-  function handleSelectAnswer(selectedAnswer) {
+  // useCallback();
+  // this function now not re-created on every render.
+  const handleSelectAnswer = useCallback(function handleSelectAnswer(selectedAnswer) {
     setUserAnswers((prevUserAnswers) => {
       return [...prevUserAnswers, selectedAnswer];
     });
-  }
+  },[]);
+
+  // this function now not re-created on every render. render if handleSelectAnswer is changed.(but it is also not changed on every render.)
+  const handleSkipAnswer = useCallback(() => {
+    handleSelectAnswer(null);
+  },[handleSelectAnswer]);
 
   return (
     <div id="quiz">
       <div id="question">
         <QuestionTimer
           timeout={10000}
-          onTimeout={() => handleSelectAnswer(null)}
+          onTimeout={handleSkipAnswer}
         />
         <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
         <ul id="answers">
