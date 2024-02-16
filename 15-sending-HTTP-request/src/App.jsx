@@ -5,6 +5,7 @@ import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
+import { updateUsersPlaces } from './http.js';
 
 function App() {
   const selectedPlace = useRef();
@@ -22,7 +23,7 @@ function App() {
     setModalIsOpen(false);
   }
 
-  function handleSelectPlace(selectedPlace) {
+  async function handleSelectPlace(selectedPlace) {
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
@@ -32,6 +33,15 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
+
+    try {
+      const responseMessage = await updateUsersPlaces([selectedPlace, ...userPlaces]);
+      console.log(responseMessage);
+    } catch (error) {
+      // handle error.
+      console.log("Error occurred while updating user places.",error.message);
+    }
+    
   }
 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
