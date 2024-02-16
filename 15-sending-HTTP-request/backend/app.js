@@ -5,7 +5,7 @@ import express from 'express';
 
 const app = express();
 
-app.use(express.static('images'));
+app.use(express.static('images')); // means that the images folder is static and can be accessed by the frontend
 app.use(bodyParser.json());
 
 // CORS
