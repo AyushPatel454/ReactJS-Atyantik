@@ -1,3 +1,4 @@
+// ---> Fetch all places.
 export async function fetchAvailablePlaces() {
     const response = await fetch("http://localhost:3000/places"); // <--- returns a promise
     const resData = await response.json(); // <--- returns a promise
@@ -10,6 +11,7 @@ export async function fetchAvailablePlaces() {
     return resData.places;
 }
 
+// ---> Update user places.
 export async function updateUsersPlaces(places) {
     const response = await fetch('http://localhost:3000/user-places',{
         method: 'PUT',
@@ -26,4 +28,17 @@ export async function updateUsersPlaces(places) {
     }
 
     return resData.message;
+}
+
+// ---> Fetch user places.
+export async function fetchUserPlaces() {
+    const response = await fetch("http://localhost:3000/user-places"); // <--- returns a promise
+    const resData = await response.json(); // <--- returns a promise
+
+    if (!response.ok) {
+      // if response status is not ok (200-299) then throw an error.
+      throw new Error("Failed to fetch user places.");
+    }
+
+    return resData.places;
 }
