@@ -6,13 +6,16 @@ export default function AvailablePlaces({ onSelectPlace }) {
 
   // ---> fetching data from the server
   useEffect(() => {
-    fetch("http://localhost:3000/places")
-    .then((response) => {
-      return response.json(); // <--- returns a promise
-    })
-    .then((resData) => {
+    // useEffect call back function can't be async so we need to create a new function and call it inside useEffect.
+
+    // ---> fetching data from the server
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/places"); // <--- returns a promise
+      const resData = await response.json(); // <--- returns a promise
       setAvailablePlaces(resData.places); // response data contain object with places key. (check app.js file in backend folder for more details.)
-    });
+    }
+
+    fetchData();
   }, []);
   
 
