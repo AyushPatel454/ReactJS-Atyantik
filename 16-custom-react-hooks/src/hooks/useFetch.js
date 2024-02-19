@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+// custom hook: this hook use for fetching data.
+// fetchFn: fetch function.
+// initialValue: initial value for fetch data.
+// return: isFetching, fetchData, setFetchData, error.
 export function useFetch(fetchFn, initialValue) {
     const [isFetching, setIsFetching] = useState(); // loading state.
     const [error, setError] = useState(); // error state.
@@ -21,5 +25,5 @@ export function useFetch(fetchFn, initialValue) {
         fetchData();
     }, [fetchFn]);
 
-    return { isFetching, fetchData, error };
+    return { isFetching, fetchData, setFetchData, error };
 }
