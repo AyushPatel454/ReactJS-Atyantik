@@ -1,18 +1,28 @@
-import { useRef } from "react";
+import { useState } from "react";
 
 export default function Login() {
-  const email = useRef();
-  const password = useRef();
+  // const [enteredEmail, setEnteredEmail] = useState("");
+  // const [enteredPassword, setEnteredPassword] = useState("");
+
+  const [enteredValues, setEnteredValues] = useState({
+    email: "",
+    password: "",
+  });
 
   // handle form submit.
   function handleSubmit(event) {
     event.preventDefault(); // prevent default form submission. (not reload the page - not send form data.)
     console.log("Submit!");
 
-    const enteredEmail = email.current.value;
-    const enteredPassword = password.current.value;
+    console.log("User Email: " + enteredValues.email + " Password: "+enteredValues.password);
+  }
 
-    console.log("User Email: "+ enteredEmail +" Password: " + enteredPassword);
+  // when input field is change ---> update the state with current input field values.
+  function handleInputChange(identifier, event) {
+    setEnteredValues((prevValues) => ({
+      ...prevValues,
+      [identifier]: event.target.value,
+    }));
   }
 
   return (
@@ -26,7 +36,8 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
-            ref={email}
+            value={enteredValues.email}
+            onChange={(event) => handleInputChange("email", event)}
           />
         </div>
 
@@ -36,7 +47,8 @@ export default function Login() {
             id="password"
             type="password"
             name="password"
-            ref={password}
+            value={enteredValues.password}
+            onChange={(event) => handleInputChange("password", event)}
           />
         </div>
       </div>
