@@ -9,7 +9,12 @@ export default function Login() {
     password: "",
   });
 
-  const emailIsInvalid = enteredValues.email !== '' && !enteredValues.email.includes("@"); // check email is invalid or valid. (if invalid then show error message.)
+  const [didEdit, setDidEdit] = useState({
+    email: false,
+    password: false,
+  })
+
+  const emailIsInvalid = didEdit.email &&  !enteredValues.email.includes("@"); // check email is invalid or valid. (if invalid then show error message.)
 
   // handle form submit.
   function handleSubmit(event) {
@@ -25,6 +30,18 @@ export default function Login() {
       ...prevValues,
       [identifier]: event.target.value,
     }));
+
+    setDidEdit((prevValues) => ({
+      ...prevValues,
+      [identifier]: false,
+    }))
+  }
+
+  function handleInputBlur(identifier) {
+    setDidEdit((prevValues) => ({
+      ...prevValues,
+      [identifier]: true,
+    }));
   }
 
   return (
@@ -39,6 +56,7 @@ export default function Login() {
             type="email"
             name="email"
             value={enteredValues.email}
+            onBlur={() => handleInputBlur("email")}
             onChange={(event) => handleInputChange("email", event)}
           />
           <div className="control-error">{emailIsInvalid && <p>Please enter a valid email address.</p>}</div>
