@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Login() {
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false); // for updating UI if email is invalid.
+
   const email = useRef();
   const password = useRef();
 
@@ -12,7 +14,17 @@ export default function Login() {
     const enteredEmail = email.current.value;
     const enteredPassword = password.current.value;
 
-    console.log("User Email: "+ enteredEmail +" Password: " + enteredPassword);
+    const emailIsValid = enteredEmail.includes("@"); // check email is valid or not. (if invalid then show error message.)
+
+    // email is invalid.
+    if(!emailIsValid) {
+      setEmailIsInvalid(true); // update the UI.
+      return;
+    }
+
+    setEmailIsInvalid(false); // if 1st time invalid then email is invalid & 2nd time email is valid then we need to again update the UI & state and make email is valid.
+
+    console.log("Sending HTTP request... ... ...");
   }
 
   return (
@@ -28,6 +40,7 @@ export default function Login() {
             name="email"
             ref={email}
           />
+          <div className="control-error">{emailIsInvalid && <p>Please enter a valid email address.</p>}</div>
         </div>
 
         <div className="control no-margin">
