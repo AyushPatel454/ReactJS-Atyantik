@@ -4,6 +4,7 @@ const CartContext = createContext({
   items: [],
   addItem: (item) => {},
   removeItem: (id) => {},
+  clearCart: () => {},
 });
 
 function cartReducer(state, action) {
@@ -33,12 +34,12 @@ function cartReducer(state, action) {
       updatedItems.push({ ...action.item, quantity: 1 });
     }
 
-    return { ...state, items: updatedItems }
+    return { ...state, items: updatedItems };
   }
 
   if (action.type === "REMOVE_ITEM") {
     // remove an item from the state.
-    
+
     // find the index of the item in the state.
     const existingItemIndex = state.items.findIndex((item) => {
       return item.id === action.id;
@@ -48,17 +49,24 @@ function cartReducer(state, action) {
 
     const updatedItems = [...state.items];
 
-    if(existingCartItem.quantity === 1) {
+    if (existingCartItem.quantity === 1) {
       // remove the item from the cart.
       updatedItems.splice(existingItemIndex, 1); // remove 1 item from the existing index.
     } else {
-        // update the quantity of the item.
-        const updatedItem = { ...existingCartItem, quantity: existingCartItem.quantity - 1 };
-        // update the item in the cart.
-        updatedItems[existingItemIndex] = updatedItem;
+      // update the quantity of the item.
+      const updatedItem = {
+        ...existingCartItem,
+        quantity: existingCartItem.quantity - 1,
+      };
+      // update the item in the cart.
+      updatedItems[existingItemIndex] = updatedItem;
     }
 
-    return { ...state, items: updatedItems }
+    return { ...state, items: updatedItems };
+  }
+
+  if (action.type === "CLEAR_CART") {
+    return { ...state, items: [] };
   }
 
   return state;
@@ -75,10 +83,15 @@ export function CartContextProvider({ children }) {
     dispatchCartAction({ type: "REMOVE_ITEM", id: id });
   }
 
+  function clearCart() {
+    dispatchCartAction({ type: "CLEAR_CART" });
+  }
+
   const cartContext = {
     items: cart.items,
     addItem: addItem,
     removeItem: removeItem,
+    clearCart: clearCart,
   };
 
   return (
