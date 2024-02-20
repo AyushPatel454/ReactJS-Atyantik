@@ -38,7 +38,7 @@ function cartReducer(state, action) {
 
   if (action.type === "REMOVE_ITEM") {
     // remove an item from the state.
-
+    
     // find the index of the item in the state.
     const existingItemIndex = state.items.findIndex((item) => {
       return item.id === action.id;
@@ -72,7 +72,7 @@ export function CartContextProvider({ children }) {
   }
 
   function removeItem(id) {
-    dispatchCartAction({ type: "REMOVE_ITEM", item: id });
+    dispatchCartAction({ type: "REMOVE_ITEM", id: id });
   }
 
   const cartContext = {
