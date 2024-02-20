@@ -26,6 +26,22 @@ export default function Checkout() {
 
     const customerData = Object.fromEntries(fd.entries()); // convert FormData to object (getting all the form data) {email: 'abc@gmail.com', ...}
 
+    // Make POST request (for store data in the backend)
+    // (this time we need to require response.)
+    console.log("customerData", customerData);
+    console.log("cartCtx.items", cartCtx.items);
+    fetch('http://localhost:3000/orders', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            order: {
+                items: cartCtx.items,
+                customer: customerData,
+            },
+        }),
+    });
 
   }
 
@@ -35,7 +51,7 @@ export default function Checkout() {
         <h2>Checkout</h2>
         <p>Total amount: {currencyFormatter.format(cartTotal)}</p>
 
-        <Input label="Full Name" type="text" id="full-name" />
+        <Input label="Full Name" type="text" id="name" />
         <Input label="E-mail Address" type="email" id="email" />
         <Input label="Street" type="text" id="street" />
         <div className="control-row">
