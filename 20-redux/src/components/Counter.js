@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
+import { counterActions } from '../store/index.js';
+
 import classes from './Counter.module.css';
 
 const Counter = () => {
@@ -14,20 +16,20 @@ const Counter = () => {
   // it will be called whenever the increment button is clicked
   const incrementHandler = () => {
     // dispatch an action to the store. the action is pass to the reducer function in the store & the reducer function will update the state.
-    dispatch({type: 'increment'});
+    dispatch(counterActions.increment());
   };
 
   const increaseHandler = () => {
-    dispatch({type: 'increase', amount: 9});
+    dispatch(counterActions.increase(9)); // {type: SOME_UNIQUE_IDENTIFIER, payload: 9}
   }
 
   // when the decrement button is clicked, it will dispatch an action to the store.
   const decrementHandler = () => {
-    dispatch({type: 'decrement'});
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({type: 'toggle'});
+    dispatch(counterActions.toggle());
   };
 
   return (
