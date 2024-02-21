@@ -8,10 +8,20 @@ const redux = require('redux'); // node js syntax for importing a 3rd party pack
    Reducers are used to handle the asynchronous actions. */
 
 //    take initial value of state ---> state = {counter: 0}
-const counterReducer = (state = {counter: 0}, action) => {
-    return {
-        counter: state.counter + 1,
+const counterReducer = (state = { counter: 0 }, action) => {
+    if (action.type === "increment") {
+        return {
+            counter: state.counter + 1,
+        }
     }
+
+    if (action.type === "decrement") {
+        return {
+            counter: state.counter - 1,
+        }
+    }
+
+    return state;
 }
 
 // create a store and pass the reducer to the store.
@@ -27,4 +37,5 @@ const counterSubscriber = () => {
 store.subscribe(counterSubscriber);
 
 // dispatch an action to the store. (means changing the state of the store)
-store.dispatch({type: 'increment'}); // {counter: 2}
+store.dispatch({ type: 'increment' }); // {counter: 1}
+store.dispatch({ type: 'decrement'}); // {counter: 0}
