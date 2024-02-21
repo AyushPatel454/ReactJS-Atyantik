@@ -8,8 +8,8 @@ const Counter = () => {
   // set automatically subscription to the store.
   // it will be called whenever the store changes
   // so that it can get the latest state and re-render the component
-  const counter = useSelector(state => state.counter);
-  const show = useSelector(state => state.showCounter);
+  const counter = useSelector(state => state.counter.counter);
+  const show = useSelector(state => state.counter.showCounter);
 
   const  dispatch = useDispatch(); // return a function that we can call to dispatch an action.
 
