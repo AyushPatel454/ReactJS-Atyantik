@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { counterActions } from '../store/index.js';
+import { counterActions } from '../store/counter-slice.js';
 
 import classes from './Counter.module.css';
 
@@ -8,10 +8,10 @@ const Counter = () => {
   // set automatically subscription to the store.
   // it will be called whenever the store changes
   // so that it can get the latest state and re-render the component
-  const counter = useSelector(state => state.counter.counter);
-  const show = useSelector(state => state.counter.showCounter);
+  const counter = useSelector(state => state.counter.counter);  // read data
+  const show = useSelector(state => state.counter.showCounter); // read data
 
-  const  dispatch = useDispatch(); // return a function that we can call to dispatch an action.
+  const  dispatch = useDispatch(); // return a function that we can call to dispatch an action. // for updating state.
 
   // it will be called whenever the increment button is clicked
   const incrementHandler = () => {

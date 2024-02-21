@@ -7,7 +7,7 @@ import UserProfile from './components/UserProfile.js';
 
 
 function App() {
-  const isAuth = useSelector(state => state.auth.isAuthenticated );
+  const isAuth = useSelector(state => state.auth.isAuthenticated ); // read data
   return (
     <Fragment>
       <Header />
