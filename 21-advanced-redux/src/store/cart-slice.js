@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialCartState = {
     quantity: 0,
     items: [],
-    price: 0
+    price: 0,
+    changed: false,
 }
 
 const cartSlice = createSlice({
@@ -17,6 +18,7 @@ const cartSlice = createSlice({
         },
         addToCart(state, action) {
             state.quantity++;
+            state.changed = true;
             // check if the item is already in the cart.
             const index = state.items.findIndex(item => item.id === action.payload.id);
             if (index >= 0) {
@@ -37,6 +39,7 @@ const cartSlice = createSlice({
         },
         incrementQuantity(state, action) {
             state.quantity++;
+            state.changed = true;
             // find id of the item.
             const index = state.items.findIndex(item => item.id === action.payload.id);
             state.items[index].quantity++;
@@ -44,6 +47,7 @@ const cartSlice = createSlice({
         },
         decrementQuantity(state, action) {
             state.quantity--;
+            state.changed = true;
             // find the id of the item.
             const index = state.items.findIndex(item => item.id === action.payload.id);
             state.items[index].quantity--;
