@@ -3,15 +3,21 @@ import { cartActions } from '../../store/cart-slice';
 import classes from './CartItem.module.css';
 
 const CartItem = (props) => {
-  const { title, quantity, total, price } = props.item;
+  const { title, quantity, total, price, id } = props.item;
   const dispatch = useDispatch(cartActions);
 
   function handleDecrementOrder() {
-    dispatch(cartActions.decrementQuantity());
+    const itemInfo = {
+      id,
+    }
+    dispatch(cartActions.decrementQuantity(itemInfo));
   }
 
   function handleIncrementOrder() {
-    dispatch(cartActions.incrementQuantity());
+    const itemInfo = {
+      id,
+    }
+    dispatch(cartActions.incrementQuantity(itemInfo));
   }
 
   return (

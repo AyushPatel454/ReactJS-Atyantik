@@ -5,11 +5,16 @@ import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
 const ProductItem = (props) => {
-  const { title, price, description } = props;
+  const { title, price, description, id } = props;
   const dispatch = useDispatch(cartActions);
 
   function handleAddCart() {
-    dispatch(cartActions.addToCart());
+    const itemInfo ={
+      id,
+      name: title,
+      price,
+    }
+    dispatch(cartActions.addToCart(itemInfo));
   }
 
   return (
