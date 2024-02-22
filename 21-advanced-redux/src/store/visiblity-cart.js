@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialVisibilityState = {
     isVisible: false,
-    temp: 1
 }
 
 const visibilitySlice = createSlice({
