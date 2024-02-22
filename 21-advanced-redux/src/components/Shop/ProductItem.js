@@ -11,40 +11,12 @@ const ProductItem = (props) => {
   const dispatch = useDispatch(cartActions);
 
   function handleAddCart() {
-    const newQuantity = cart.quantity + 1;
-    const newPrice = cart.price + price;
-
-    const updatedItems = cart.items.slice(); // create a deep copy of the items array. (not a reference to the original array Because reference to the original array will mutate the original array.)
-    const existingItem = updatedItems.find(item => item.id === id); // find the item with the same id as the current item.
-    if(existingItem) {
-      const updatedItem = { ...existingItem }; // spread operator to create a new object with the same properties as the existingItem object.
-      updatedItem.quantity++;
-      
-      const existingItemIndex = updatedItems.findIndex(item => item.id === id);
-      updatedItems[existingItemIndex] = updatedItem;
-    } else {
-      updatedItems.push({ id, name: title, price, quantity: 1 });
+    const itemInfo ={
+      id,
+      name: title,
+      price,
     }
-
-    // update the cart state with the new items, quantity, and price.
-    dispatch(cartActions.replaceCart({
-      items: updatedItems,
-      quantity: newQuantity,
-      price: newPrice,
-    }));
-
-
-
-
-
-    
-
-    // const itemInfo ={
-    //   id,
-    //   name: title,
-    //   price,
-    // }
-    // dispatch(cartActions.addToCart(itemInfo));
+    dispatch(cartActions.addToCart(itemInfo));
   }
 
   return (
