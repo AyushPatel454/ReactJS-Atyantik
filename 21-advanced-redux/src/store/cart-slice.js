@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialCartState = {
     quantity: 0,
     items: [],
-    price: 0,
-    isVisible: false
+    price: 0
 }
 
 const cartSlice = createSlice({
@@ -55,9 +54,6 @@ const cartSlice = createSlice({
                 state.items = state.items.filter(item => item.id !== action.payload.id);
             }
         },
-        toggleVisibility(state) {
-            state.isVisible = !state.isVisible;
-        }
     }
 })
 export default cartSlice.reducer;

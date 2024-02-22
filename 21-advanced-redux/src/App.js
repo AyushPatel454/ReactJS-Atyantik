@@ -9,7 +9,7 @@ import Notification from './components/UI/Notification.js';
 let initial = true;
 
 function App() {
-  const showCart = useSelector((state) => state.cart.isVisible);
+  const showCart = useSelector((state) => state.visibility_cart);
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.notification);
   const dispatch = useDispatch();
@@ -51,8 +51,6 @@ function App() {
       setTimeout(() => {
         dispatch(notificationActions.hideNotification());
       }, 3000);
-
-
     };
 
     sendCartData().catch((error) => {
@@ -76,7 +74,7 @@ function App() {
     <>
       {notification.status !== null && <Notification status={notification.status} title={notification.title} message={notification.message} />}
       <Layout>
-        {showCart && <Cart />}
+        {showCart.isVisible && <Cart />}
         <Products />
       </Layout>
     </>
