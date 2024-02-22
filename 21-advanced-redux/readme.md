@@ -1,3 +1,27 @@
+# Advanced Redux
+
+# Getting Started
+
+To get started with this project, follow these steps:
+
+1. **Install dependencies**: Run the `npm install` command in your terminal to install the required dependencies for this project.
+
+    ```bash
+    npm install
+    ```
+
+2. **Install Redux Toolkit**: This project uses Redux Toolkit for state management. Install it with the following command:
+
+    ```bash
+    npm install @reduxjs/toolkit
+    ```
+
+3. **Start the project**: Once all dependencies are installed, you can start the project by running the `npm start` command. This will start the development server and open the website in your default web browser.
+
+    ```bash
+    npm start
+    ```
+
 # Project Overview
 
 In this project, we interact with Firebase's real-time database to manage user data. We perform the following operations:
