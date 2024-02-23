@@ -41,10 +41,176 @@
 
 body {
   margin: 0;
+  padding: 2rem;
 }
 
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.active{
+  color: #f6ad1b;
+  text-decoration: underline;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 2rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.event {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  background-color: #31302e;
+  color: #fff;
+}
+
+.server-message {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  background-color: #31302e;
+  color: #fff;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+h1 {
+  text-align: center;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.event-image {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+.event-content {
+  padding: 20px;
+}
+
+.event-title {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.event-description {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.event-date {
+  margin: 0;
+  color: #888;
+}
+
+.event-edit-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-content {
+  padding: 20px;
+}
+
+.event-title {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.event-description {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.event-edit-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
 }

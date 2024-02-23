@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"Annual Function","description":"Our school arrange annual function for all the students and teachers of the school wo we are happy to announce that all the students and teacher come in our school annual day function.","date":"2024-03-09","image":"https://th.bing.com/th/id/OIP.khpVNH8wGazyFCbljojXTAHaEP?rs=1&pid=ImgDetMain","id":"d735db4e-3ce2-4772-810e-e32d2634e632"},{"title":"Test 2 - updated","description":"test 2 description - updated","date":"2024-02-24","image":"https://th.bing.com/th/id/OIP.pGUSBQ21F7_o9AxQiao8_wHaE7?rs=1&pid=ImgDetMain","id":"f58c1076-5ede-41b5-bfb3-62667a311dca"},{"title":"Test 1 - updated","description":"Test 1 description - updated","date":"2024-03-09","image":"https://wallpapercave.com/wp/wp2349409.jpg","id":"35f11415-1e6b-4192-a35c-16d723dde19b"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
