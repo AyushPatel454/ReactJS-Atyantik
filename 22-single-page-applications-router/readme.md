@@ -16,7 +16,11 @@ Follow these steps to install the project:
     npm install react-router-dom
     ```
 
-Now, you are ready to run the project in your local environment.
+5. Now, you are ready to run the project in your local environment using below command:
+
+    ```bash
+    npm start
+    ```
 
 # Routing in the Application
 
