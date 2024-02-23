@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    errorElement: <p>Error At root level</p>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '',
@@ -25,7 +25,6 @@ const router = createBrowserRouter([
           {
             path: '',
             element: <EventsPage />,
-            errorElement: <ErrorPage />,
             loader: eventsPageLoader,
           },
           {
