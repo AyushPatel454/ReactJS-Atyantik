@@ -4,7 +4,8 @@ import { useLoaderData } from "react-router";
 
 
 export default function EventsPage() {
-    const events = useLoaderData();
+    // useLoaderData is a hook that returns the data from the loader function.
+    const {events} = useLoaderData(); // destructuring the events from the data object
     const navigate = useNavigate();
 
     function handleClick(id) {
@@ -42,7 +43,6 @@ export async function loader() {
     if (!response.ok) {
         // ... handle error
     } else {
-        const resData = await response.json();
-        return resData.events;
+        return response; // Return the object of Response class. (React auto converts it to JSON for us.)
     }
 }
