@@ -31,9 +31,11 @@ Here is an example of how we define a router:
 ```javascript
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
+import ProductsPage from "./pages/Product.js";
 
 const router = createBrowserRouter([
   {path: "/", element: <HomePage />},
+  {path:"/products", element: <ProductsPage />},
 ])
 ```
 In this example, we define a route for the root URL ("/") that renders the HomePage component.
@@ -48,3 +50,7 @@ function App() {
 }
 ```
 With this setup, our application will render the HomePage component when the URL is the root URL ("/").
+
+### Output
+![Root Path](./img/img1.png)
+![Product Path](./img/img2.png)
