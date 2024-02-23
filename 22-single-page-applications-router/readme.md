@@ -56,5 +56,25 @@ function App() {
 With this setup, our application will render the HomePage component when the URL is the root URL ("/").
 
 ### Output
-![Root Path](./img/img1.png)
-![Product Path](./img/img2.png)
+<img src="./img/img1.png" alt="Root Path" height="90"/>
+<img src="./img/img2.png" alt="Product Path" height="90"/>
+
+# Navigation in the Application
+
+In our application, we use the `Link` component from `react-router-dom` to create navigable links.
+
+Here is an example from our `Home.js` file:
+
+```javascript
+import { Link } from "react-router-dom";
+
+export default function Home() {
+    return <>
+    <h1>My Home page.</h1>
+    <p>Go to products page. <Link to="/products">Products...</Link></p>
+    </>;
+}
+```
+In this example, we have a link that navigates to the "/products" URL when clicked. The Link component uses the to prop to determine the URL to navigate to. In this case, we set to="/products" to navigate to the products page.
+
+The text between the opening and closing Link tags ("Products...") is the text that will be displayed for the link.
