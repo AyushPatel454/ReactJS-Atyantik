@@ -51,8 +51,10 @@ ul {
 }
 
 .active{
-  color: #f6ad1b;
-  text-decoration: underline;
+  background-color: #f6ad1b;
+  /* text-decoration: underline; */
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
 }
 
 nav ul {

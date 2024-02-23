@@ -1,21 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { useLoaderData } from "react-router";
 
 
 export default function EventsPage() {
-    const [events, setEvents] = useState([]);
+    const events = useLoaderData();
     const navigate = useNavigate();
-    useEffect(() => {
-        async function fetchEvents() {
-            const response = await fetch('http://localhost:8080/events');
-            const responseData = await response.json();
-            console.log(responseData.events);
-
-            setEvents(responseData.events);
-        }
-
-        fetchEvents();
-    }, []);
 
     function handleClick(id) {
         // navigate :id 
