@@ -6,11 +6,13 @@ import RootEvents from './pages/RootEvents.js';
 import EventDetailPage from './pages/EventDetailPage.js';
 import NewEventPage from './pages/NewEventPage.js';
 import EditEventPage from './pages/EditEventPage.js';
+import ErrorPage from './pages/ErrorPage.js';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <p>Error At root level</p>,
     children: [
       {
         path: '',
@@ -23,6 +25,7 @@ const router = createBrowserRouter([
           {
             path: '',
             element: <EventsPage />,
+            errorElement: <ErrorPage />,
             loader: eventsPageLoader,
           },
           {
