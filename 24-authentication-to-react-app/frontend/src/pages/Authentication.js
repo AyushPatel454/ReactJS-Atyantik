@@ -46,6 +46,9 @@ export async function action({request}) {
 
   // store token in local storage
   localStorage.setItem('token', token);
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1);
+  localStorage.setItem('expiration', expiration.toISOString()); // store expiry date of take after 1 hour of registration of login.
 
   // redirect to home page after successful login or signup
   return redirect('/');
