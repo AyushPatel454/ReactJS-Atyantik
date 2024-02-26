@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, json } from "react-router";
 import { useLoaderData } from "react-router";
 
 
@@ -43,13 +42,14 @@ export default function EventsPage() {
 }
 
 export async function loader() {
-    const response = await fetch('http://localhost:8080/events');
+    const response = await fetch('http://localhost:8080/eventssss');
 
     if (!response.ok) {
         // ... handle error
         // return {isError: true, message: 'Can not fetch the events data.'};
         // throw {message: 'Can not fetch the events data.'};
-        throw new Response(JSON.stringify({message: 'Can not fetch the events data.'}), {status: 500}); // Return the object of Response class. (React auto converts it to JSON for us.)
+        // throw new Response(JSON.stringify({message: 'Can not fetch the events data.'}), {status: 500}); // Return the object of Response class. (React auto converts it to JSON for us.)
+        throw json({message: 'Can not fetch the events data.'}, {status: 500}); // Return the object of Response class. (React auto converts it to JSON for us.
     } else {
         return response; // Return the object of Response class. (React auto converts it to JSON for us.)
     }
