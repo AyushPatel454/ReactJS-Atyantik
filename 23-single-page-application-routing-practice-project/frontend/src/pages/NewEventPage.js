@@ -1,48 +1,11 @@
-import { useEffect, useState } from "react";
+import { Form, json, redirect } from "react-router-dom";
 
 export default function NewEventPage() {
 
-  const [data, setData] = useState();
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    async function sendData() {
-      const response = await fetch("http://localhost:8080/events", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-      console.log(responseData);
-      setMessage(responseData.message);
-    }
-    if (data) {
-      console.log(data);
-      sendData();
-    }
-  }, [data]);
-
-
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const title = event.target.elements.title.value;
-    const description = event.target.elements.description.value;
-    const date = event.target.elements.date.value;
-    const image = event.target.elements.image.value;
-    const eventData = { title, description, date, image };
-    // console.log(eventData);
-    setData(eventData);
-    event.target.reset();
-  }
   return (
     <div>
-      {message && <p className="server-message">{message}</p>}
       <h1>Add a new Event.</h1>
-      <form onSubmit={handleSubmit} className="form">
+      <Form method="post" className="form">
         <div className="form-group">
           <label htmlFor="title" className="form-label">Title</label>
           <input type="text" id="title" name="title" required className="form-input" />
@@ -60,7 +23,32 @@ export default function NewEventPage() {
           <input type="url" id="image" name="image" required className="form-input" />
         </div>
         <button type="submit" className="form-button">Create Event</button>
-      </form>
+      </Form>
     </div>
   );
+}
+
+export async function action({request, params}) {
+  const data = await request.formData();
+
+  const eventData = {
+    title: data.get("title"),
+    description: data.get("description"),
+    date: data.get("date"),
+    image: data.get("image"),
+  }
+
+  const response = await fetch("http://localhost:8080/events", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(eventData),
+  });
+
+  if(!response.ok) {
+    throw json({message: "Can not create the event."}, {status: 500});
+  }
+
+  return redirect("/events");
 }
