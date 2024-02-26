@@ -32,6 +32,7 @@ export async function action({request}) {
 
   // ---> status = 422 for invalid input & 401 for invalid user.
   if(response.status === 422 || response.status === 401) {
+    console.log(response)
     return response;
   }
 
@@ -41,5 +42,7 @@ export async function action({request}) {
   }
 
   // response token soon... ... ...
+
+  // redirect to home page after successful login or signup
   return redirect('/');
 }
