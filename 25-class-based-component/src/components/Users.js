@@ -14,6 +14,12 @@ class Users extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.users.length === 0) {
+      throw new Error("No user available...!!");
+    }
+  }
+
   // ---> Defining method.
   toggleUsersHandler() {
     // ---> Update the state.
