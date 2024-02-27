@@ -34,6 +34,14 @@ Below are some of the key projects created in this repository:
    - Follow this section: [12-Context_API-useReducer_AdvancedStateManagment](12-Context_API-useReducer_AdvancedStateManagment)
    - Demo: [Cart Management Demo](https://context-api-usereducer-shopping-cart.vercel.app/)
 
+7. **Todo App**
+   - Description:
+    Todo management: Add, update, mark as done, unmark, and delete todos.
+    Persistence: Todos are stored in local storage for persistence across sessions.
+    Class-based components: The entire project uses class-based components.
+   - Follow this section: [Todo-app-classBasedComponent](Todo-app-classBasedComponent)
+
+
 For a complete list of projects and their descriptions, please refer to the project index in the README.md file.
 
 ## About
