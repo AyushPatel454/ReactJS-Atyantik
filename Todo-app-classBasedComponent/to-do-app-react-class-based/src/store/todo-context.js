@@ -67,28 +67,37 @@ export class TodoContextProvider extends Component{
     }
 
     // ---> update todo
-    updateTodoHandler = (id) => {
+    updateTodoHandler = (id, title='') => {
         const todoIndex = this.state.todos.findIndex((todo) => todo.id === id); // find the index of todo.
         const todo = { ...this.state.todos[todoIndex] }; // copy the todo.
+        
+        if (title !== '') {
+            todo.title = title;
+        } else {
+            todo.done = !todo.done; // make to do done or undone.
+        }
+        
         const isDone = todo.done; // check if the todo is done or undone.
-
-        todo.done = !todo.done; // make to do done or undone.
         const todoList = [...this.state.todos]; // make deep copy of todo list.
         todoList[todoIndex] = todo; // update the todo list.
 
         // update the state.
         this.setState({
             todos: todoList,
-            doneTodo: isDone ? this.state.doneTodo - 1 : this.state.doneTodo + 1,
-            undoneTodo: isDone ? this.state.undoneTodo + 1 : this.state.undoneTodo - 1,
+            doneTodo: title !== '' ? this.state.doneTodo : isDone ? this.state.doneTodo + 1 : this.state.doneTodo - 1,
+            // doneTodo: isDone ? this.state.doneTodo - 1 : this.state.doneTodo + 1,
+            undoneTodo: title !== '' ? this.state.undoneTodo : isDone ? this.state.undoneTodo - 1 : this.state.undoneTodo + 1,
+            // undoneTodo: isDone ? this.state.undoneTodo + 1 : this.state.undoneTodo - 1,
         });
 
         // update the local storage.
         const obj = {
             todos: todoList,
             totalTodo: this.state.totalTodo,
-            doneTodo: isDone ? this.state.doneTodo - 1 : this.state.doneTodo + 1,
-            undoneTodo: isDone ? this.state.undoneTodo + 1 : this.state.undoneTodo - 1,
+            doneTodo: title !== '' ? this.state.doneTodo : isDone ? this.state.doneTodo + 1 : this.state.doneTodo - 1,
+            // doneTodo: isDone ? this.state.doneTodo - 1 : this.state.doneTodo + 1,
+            undoneTodo: title !== '' ? this.state.undoneTodo : isDone ? this.state.undoneTodo - 1 : this.state.undoneTodo + 1,
+            // undoneTodo: isDone ? this.state.undoneTodo + 1 : this.state.undoneTodo - 1,
         };
 
         updateLocalStorage(obj);
