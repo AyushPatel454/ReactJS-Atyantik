@@ -33,9 +33,6 @@ class App extends Component {
         doneTodo: todoList.doneTodo || 0,
         undoneTodo: todoList.undoneTodo || 0,
     });
-    this.addTodoHandler = this.addTodoHandler.bind(this);
-    this.updateTodoHandler = this.updateTodoHandler.bind(this);
-    this.deleteTodoHandler = this.deleteTodoHandler.bind(this);
 }
 
   // ---> add todo
