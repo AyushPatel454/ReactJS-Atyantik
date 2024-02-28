@@ -11,6 +11,7 @@ class TodoItem extends Component {
         this.handleUpdateTodo = this.handleUpdateTodo.bind(this);
         this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
         this.handleEditButton = this.handleEditButton.bind(this);
+        this.handleOnChangeInput = this.handleOnChangeInput.bind(this);
         this.handleSaveButton = this.handleSaveButton.bind(this);
         this.handleDeleteButton = this.handleDeleteButton.bind(this);
     }
@@ -39,6 +40,10 @@ class TodoItem extends Component {
 
     // handle Save button (save todo)
     handleSaveButton() {
+        if(this.state.title.trim() === '') {
+            alert('Please enter valid todo name');
+            return;
+        }
         this.props.updateTodo(this.props.todo.id, this.state.title);
         this.setState({
             isEditing: false,
@@ -52,10 +57,19 @@ class TodoItem extends Component {
             title: this.props.todo.title,
         });
     }
+
+    // handle onChange input event
+    handleOnChangeInput(event) {
+        this.setState((prevState) => {
+            return {
+                title: event.target.value,
+            }
+        })
+    }
     render() {
         return (
             <div className={`item ${this.props.todo.done ? 'done' : ''}`}>
-                {this.state.isEditing && <input type="text" className="changeTitle" value={this.state.title} onChange={(event) => this.setState({ title: event.target.value })} />}
+                {this.state.isEditing && <input type="text" className="changeTitle" value={this.state.title} onChange={this.handleOnChangeInput} />}   
 
                 {!this.state.isEditing && <h3 className="todo-name">{this.props.todo.title}</h3>}
                 <div className="btns">
