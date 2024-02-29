@@ -6,9 +6,14 @@ class TodoList extends Component {
         return(
             <>
                 {this.props.todos.map((todo) => {
-                    // console.log("Inside the TodoList component", todo);
+                    
                     return (
-                        <TodoItem key={todo.id} todo={todo} updateTodo={this.props.updateTodo} deleteTodo={this.props.deleteTodo} />
+                        <TodoItem 
+                            key={todo.id} 
+                            todo={todo} 
+                            updateTodo={this.props.updateTodo} 
+                            deleteTodo={this.props.deleteTodo} 
+                        />
                     )
                 })}
             </>

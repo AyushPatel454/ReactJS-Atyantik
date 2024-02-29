@@ -38,7 +38,7 @@ class Form extends Component {
         const newTodo = {
             id: Math.random(),
             title: enteredTodo,
-            done: false,
+            done: false,    
         };
 
         // add the new todo to the todo list

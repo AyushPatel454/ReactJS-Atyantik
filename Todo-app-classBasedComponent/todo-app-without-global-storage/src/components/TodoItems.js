@@ -8,6 +8,7 @@ class TodoItem extends Component {
             title: '',
             isEditing: false,
         };
+
         this.handleUpdateTodo = this.handleUpdateTodo.bind(this);
         this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
         this.handleEditButton = this.handleEditButton.bind(this);
@@ -71,21 +72,55 @@ class TodoItem extends Component {
             <div className={`item ${this.props.todo.done ? 'done' : ''}`}>
                 {this.state.isEditing && <input type="text" className="changeTitle" value={this.state.title} onChange={this.handleOnChangeInput} />}   
 
-                {!this.state.isEditing && <h3 className="todo-name">{this.props.todo.title}</h3>}
+                {
+                    !this.state.isEditing && (
+                        <h3 className="todo-name">{this.props.todo.title}</h3>
+                    ) 
+                }
+
                 <div className="btns">
 
                     {!this.state.isEditing && (
                         <>
-                            <button className="mark-done btn" onClick={this.handleUpdateTodo}>{this.props.todo.done ? 'Unmark' : 'Done'}</button>
-                            <button className="delete btn" onClick={this.handleDeleteTodo}>Delete</button>
-                            <button className="edit btn" onClick={this.handleEditButton}>Edit</button>
+                            <button 
+                                className="mark-done btn"
+                                onClick={this.handleUpdateTodo}
+                            >
+                                {this.props.todo.done ? 'Unmark' : 'Done'}
+                            </button>
+
+                            <button 
+                                className="delete btn" 
+                                onClick={this.handleDeleteTodo}
+                            >
+                                Delete
+                            </button>
+
+                            <button 
+                                className="edit btn" 
+                                onClick={this.handleEditButton}
+                            >
+                                Edit
+                            </button>
                         </>
                     )}
 
                     {this.state.isEditing && (
                         <>
-                            <button className="save btn" onClick={this.handleSaveButton}>Save</button>
-                            <button className="cancel btn" onClick={this.handleDeleteButton}>Cancel</button>
+                            <button 
+                                className="save btn" 
+                                onClick={this.handleSaveButton}
+                            >
+                                Save
+                            </button>
+                            
+                            <button 
+                                className="cancel btn" 
+                                onClick={this.handleDeleteButton}
+                            >
+                                Cancel
+                            </button>
+                            
                         </>
                     )}
                 </div>

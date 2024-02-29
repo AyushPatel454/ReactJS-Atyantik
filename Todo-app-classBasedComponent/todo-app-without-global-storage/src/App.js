@@ -74,9 +74,19 @@ class App extends Component {
   render() {
     return (
       <>
-        <Header totalTodo={this.state.totalTodo} doneTodo={this.state.doneTodo} undoneTodo={this.state.undoneTodo} />
+        <Header 
+          totalTodo={this.state.totalTodo} 
+          doneTodo={this.state.doneTodo} 
+          undoneTodo={this.state.undoneTodo} 
+        />
+
         <Form addTodo={this.addTodoHandler} />
-        <TodoList todos={this.state.todos} updateTodo={this.updateTodoHandler} deleteTodo={this.deleteTodoHandler} />
+
+        <TodoList 
+          todos={this.state.todos} 
+          updateTodo={this.updateTodoHandler} 
+          deleteTodo={this.deleteTodoHandler} 
+        />
       </>
     );
   }
