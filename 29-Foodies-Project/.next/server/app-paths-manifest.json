@@ -2,6 +2,7 @@
   "/page": "app/page.js",
   "/meals/page": "app/meals/page.js",
   "/community/page": "app/community/page.js",
+  "/meals/share/page": "app/meals/share/page.js",
   "/meals/[slug]/page": "app/meals/[slug]/page.js",
-  "/meals/share/page": "app/meals/share/page.js"
+  "/icon.png/route": "app/icon.png/route.js"
 }
