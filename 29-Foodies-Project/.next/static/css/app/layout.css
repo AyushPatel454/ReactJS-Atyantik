@@ -58,3 +58,73 @@ svg {
   font-weight: 500;
   color: #ddd8d8;
 }
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./components/main-header.module.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+.main-header_header__zRsdG {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .main-header_header__zRsdG {
+      padding: 2rem 10%;
+    }
+  }
+  
+  .main-header_nav__gEdZN ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-size: 1.25rem;
+  }
+  
+  .main-header_nav__gEdZN a {
+    text-decoration: none;
+    color: #ddd6cb;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .main-header_nav__gEdZN a:hover,
+  .main-header_nav__gEdZN a:active {
+    background: linear-gradient(90deg, #ff8a05, #f9b331);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgba(248, 190, 42, 0.8);
+  }
+  
+  .main-header_active__W_B_p {
+    background: linear-gradient(90deg, #ff8a05, #f9b331);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .main-header_logo__vLIae {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    text-decoration: none;
+    color: #ddd6cb;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+  
+  .main-header_logo__vLIae img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.5));
+  }
