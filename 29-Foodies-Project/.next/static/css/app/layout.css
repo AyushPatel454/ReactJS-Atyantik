@@ -102,30 +102,6 @@ svg {
     font-size: 1.25rem;
   }
   
-  .main-header_nav__7caAm a {
-    text-decoration: none;
-    color: #ddd6cb;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-  }
-  
-  .main-header_nav__7caAm a:hover,
-  .main-header_nav__7caAm a:active {
-    background: linear-gradient(90deg, #ff8a05, #f9b331);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 18px rgba(248, 190, 42, 0.8);
-  }
-  
-  .main-header_active__e0w9a {
-    background: linear-gradient(90deg, #ff8a05, #f9b331);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
   .main-header_logo__BaWrz {
     display: flex;
     align-items: center;
@@ -146,3 +122,30 @@ svg {
     object-fit: contain;
     filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.5));
   }
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./components/main-header/nav-link.module.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+.nav-link_link___P2r4 {
+  text-decoration: none;
+  color: #ddd6cb;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav-link_link___P2r4:hover,
+.nav-link_link___P2r4:active {
+  background: linear-gradient(90deg, #ff8a05, #f9b331);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(248, 190, 42, 0.8);
+}
+
+.nav-link_active__2Dd3_ {
+  background: linear-gradient(90deg, #ff8a05, #f9b331);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
