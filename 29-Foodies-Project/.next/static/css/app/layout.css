@@ -58,10 +58,28 @@ svg {
   font-weight: 500;
   color: #ddd8d8;
 }
-/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./components/main-header.module.css ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************/
-.main-header_header__zRsdG {
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./components/main-header/main-header-background.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+.main-header-background_header-background__EJniX {
+  position: absolute;
+  width: 100%;
+  height: 320px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.main-header-background_header-background__EJniX svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./components/main-header/main-header.module.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+.main-header_header__T4P4x {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,12 +87,12 @@ svg {
   }
   
   @media (min-width: 768px) {
-    .main-header_header__zRsdG {
+    .main-header_header__T4P4x {
       padding: 2rem 10%;
     }
   }
   
-  .main-header_nav__gEdZN ul {
+  .main-header_nav__7caAm ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -84,7 +102,7 @@ svg {
     font-size: 1.25rem;
   }
   
-  .main-header_nav__gEdZN a {
+  .main-header_nav__7caAm a {
     text-decoration: none;
     color: #ddd6cb;
     font-weight: bold;
@@ -92,8 +110,8 @@ svg {
     border-radius: 0.5rem;
   }
   
-  .main-header_nav__gEdZN a:hover,
-  .main-header_nav__gEdZN a:active {
+  .main-header_nav__7caAm a:hover,
+  .main-header_nav__7caAm a:active {
     background: linear-gradient(90deg, #ff8a05, #f9b331);
     background-clip: text;
     -webkit-background-clip: text;
@@ -101,14 +119,14 @@ svg {
     text-shadow: 0 0 18px rgba(248, 190, 42, 0.8);
   }
   
-  .main-header_active__W_B_p {
+  .main-header_active__e0w9a {
     background: linear-gradient(90deg, #ff8a05, #f9b331);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   
-  .main-header_logo__vLIae {
+  .main-header_logo__BaWrz {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,7 +140,7 @@ svg {
     font-size: 1.5rem;
   }
   
-  .main-header_logo__vLIae img {
+  .main-header_logo__BaWrz img {
     width: 5rem;
     height: 5rem;
     object-fit: contain;
