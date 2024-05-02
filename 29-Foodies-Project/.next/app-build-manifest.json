@@ -21,6 +21,7 @@
     "/meals/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/meals/page.css",
       "static/chunks/app/meals/page.js"
     ]
   }
